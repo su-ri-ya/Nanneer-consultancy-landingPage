@@ -227,9 +227,6 @@ export function ServicesSection() {
 
           {/* Carousel Arrows */}
           <div className="flex items-center gap-3 shrink-0">
-            <span className="text-xs font-medium text-muted-foreground hidden sm:inline-block">
-              Scroll portfolio
-            </span>
             <div className="flex items-center gap-2">
               <Button
                 variant="outline"
@@ -268,7 +265,8 @@ export function ServicesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="w-[310px] sm:w-[370px] lg:w-[410px] shrink-0 snap-start rounded-2xl border border-border/80 bg-card overflow-hidden shadow-xs hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between group"
+                onClick={() => setActiveService(service)}
+                className="w-[310px] sm:w-[370px] lg:w-[410px] shrink-0 snap-start rounded-2xl border border-border/80 bg-card overflow-hidden shadow-xs hover:border-primary/60 hover:shadow-lg transition-all flex flex-col justify-between group cursor-pointer"
               >
                 {/* Enlarged Photo Header (Grundfos Style) */}
                 <div className="relative h-56 sm:h-60 w-full overflow-hidden border-b border-border/60 bg-slate-900">
@@ -348,12 +346,6 @@ export function ServicesSection() {
               </motion.div>
             )
           })}
-        </div>
-
-        {/* Scroll Helper Hint */}
-        <div className="flex items-center justify-between text-[11px] text-muted-foreground pt-3 px-1">
-          <span>← Drag horizontally or use arrow buttons to explore all 5 services →</span>
-          <span className="font-semibold text-primary">5 Core Disciplines</span>
         </div>
       </div>
 

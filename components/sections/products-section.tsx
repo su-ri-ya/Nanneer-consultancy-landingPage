@@ -326,7 +326,8 @@ export function ProductsSection() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="rounded-2xl border border-border/80 bg-card overflow-hidden shadow-xs hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between group"
+                  onClick={() => setActiveModalItem(item)}
+                  className="rounded-2xl border border-border/80 bg-card overflow-hidden shadow-xs hover:border-primary/60 hover:shadow-lg transition-all flex flex-col justify-between group cursor-pointer"
                 >
                   {/* High-Impact Enlarged Photo Banner (Grundfos Reference) */}
                   <div className="relative h-60 sm:h-64 w-full overflow-hidden border-b border-border/60 bg-slate-900">
