@@ -1,0 +1,226 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@source "../components/**/*.{js,ts,jsx,tsx}";
+@source "../app/**/*.{js,ts,jsx,tsx}";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Group core tokens */
+  --primary: #0066cc;
+  --primary-foreground: #ffffff;
+  --secondary: #4f8cff;
+  --secondary-foreground: #ffffff;
+
+  /* Nanneer Consultancy brand additions */
+  --ink: #0A1A24;
+  --teal: #0E4A5A;
+  --aqua: #25C2D6;
+  --healthy: #35D69A;
+  --silt: #C9A25B;
+  --mist: #F2F7F6;
+
+  /* Semantic Light theme */
+  --background: #ffffff;
+  --foreground: #0A1A24;
+  --card: #ffffff;
+  --card-foreground: #0A1A24;
+  --popover: #ffffff;
+  --popover-foreground: #0A1A24;
+  --muted: #f4f6f8;
+  --muted-foreground: #4B6370;
+  --accent: #E1F4F7;
+  --accent-foreground: #0E4A5A;
+  --destructive: #E5484D;
+  --destructive-foreground: #FFFFFF;
+  --warning: #C9A25B;
+  --success: #1E8E62;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #0066cc;
+  --radius: 0.75rem;
+
+  --turbid-glow: rgba(201, 162, 91, 0.15);
+  --aqua-glow: rgba(37, 194, 214, 0.2);
+  --healthy-glow: rgba(53, 214, 154, 0.25);
+}
+
+.dark {
+  /* Semantic Dark theme */
+  --background: #061117;
+  --foreground: #F2F7F6;
+  --card: rgba(10, 26, 36, 0.75);
+  --card-foreground: #F2F7F6;
+  --popover: #0A1A24;
+  --popover-foreground: #F2F7F6;
+  --muted: rgba(255, 255, 255, 0.06);
+  --muted-foreground: #94A8B3;
+  --accent: rgba(37, 194, 214, 0.12);
+  --accent-foreground: #25C2D6;
+  --destructive: #FF6B6B;
+  --destructive-foreground: #FFFFFF;
+  --warning: #E0B367;
+  --success: #35D69A;
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: #25C2D6;
+
+  --turbid-glow: rgba(201, 162, 91, 0.25);
+  --aqua-glow: rgba(37, 194, 214, 0.3);
+  --healthy-glow: rgba(53, 214, 154, 0.35);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-ink: var(--ink);
+  --color-teal: var(--teal);
+  --color-aqua: var(--aqua);
+  --color-healthy: var(--healthy);
+  --color-silt: var(--silt);
+  --color-mist: var(--mist);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/40;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-aqua/20 selection:text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .container-custom {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: max(1.25rem, env(safe-area-inset-left, 0px)) max(1.25rem, env(safe-area-inset-right, 0px));
+  }
+
+  .glass-card {
+    background: var(--card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border);
+  }
+
+  .glass-nav {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .turbid-gradient {
+    background: radial-gradient(ellipse 70% 40% at 50% 0%, var(--turbid-glow) 0%, transparent 70%);
+  }
+
+  .clear-gradient {
+    background: radial-gradient(ellipse 70% 40% at 50% 100%, var(--aqua-glow) 0%, transparent 70%);
+  }
+
+  .text-gradient-water {
+    background: linear-gradient(135deg, #0066cc 0%, #25C2D6 50%, #35D69A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-silt {
+    background: linear-gradient(135deg, #C9A25B 0%, #8E6E32 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .pulse-node {
+    animation: pulse-node 2.4s ease-in-out infinite;
+  }
+
+  .flow-pipe {
+    background: linear-gradient(90deg, rgba(37, 194, 214, 0.2) 0%, rgba(37, 194, 214, 0.8) 50%, rgba(37, 194, 214, 0.2) 100%);
+    background-size: 200% 100%;
+    animation: flow-pipe 3s linear infinite;
+  }
+
+  /* Custom Water-Themed Scrollbar for Services & Horizontal Containers */
+  .custom-water-scrollbar::-webkit-scrollbar {
+    height: 7px;
+    width: 7px;
+  }
+  .custom-water-scrollbar::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 9999px;
+  }
+  .custom-water-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #0284c7, #06b6d4);
+    border-radius: 9999px;
+  }
+  .custom-water-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, #0369a1, #0891b2);
+  }
+  .custom-water-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #0284c7 #e2e8f0;
+  }
+}
+
+@keyframes pulse-node {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.4;
+  }
+}
+
+@keyframes flow-pipe {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .pulse-node,
+  .flow-pipe {
+    animation: none !important;
+  }
+}
+
