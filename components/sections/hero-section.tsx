@@ -61,23 +61,6 @@ export function HeroSection() {
               We work with industries and commercial buildings to solve real-world water treatment challenges. Across ETP and STP setups, issues like inconsistent output, operational inefficiencies, and rising costs are more common than they should be. Our role is to step in, understand these systems at a fundamental level, and resolve the gaps that impact performance.
             </motion.p>
 
-            {/* Official Mission Callout */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.25 }}
-              className="p-4 rounded-xl border border-primary/20 bg-primary/5 text-sm text-foreground max-w-2xl mx-auto lg:mx-0 flex items-start gap-3 text-left"
-            >
-              <Droplet className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-              <div className="space-y-1">
-                <p>
-                  At <strong>Nanneer Consultancy</strong>, the focus is on practical, on-ground problem solving—ensuring that water treatment systems run reliably, efficiently, and the way they were always intended to.
-                </p>
-                <p className="text-primary font-semibold text-xs pt-1">
-                  &ldquo;If your system isn&rsquo;t delivering the results it should, we&rsquo;re here to help.&rdquo;
-                </p>
-              </div>
-            </motion.div>
 
             {/* Action Buttons */}
             <motion.div

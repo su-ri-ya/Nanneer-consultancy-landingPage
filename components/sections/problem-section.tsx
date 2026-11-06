@@ -7,7 +7,8 @@ import {
   AlertOctagon,
   Gauge,
   Flame,
-  ActivitySquare
+  ActivitySquare,
+  FlaskConical
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
@@ -51,6 +52,14 @@ const problems = [
     description:
       "Treated effluent promised for cooling towers, boiler feed, or flushing cannot be safely utilized due to residual odor, color, or turbidity, forcing costly freshwater purchases.",
     impact: "High freshwater tanker expenses",
+  },
+  {
+    icon: FlaskConical,
+    title: "Biological Shock & Severe Odor Generation",
+    badge: "Biological Drift",
+    description:
+      "Sudden toxic load spikes, erratic aeration, and falling MLSS biomass trigger culture die-offs, foul septic odors, and weeks of unbudgeted plant recovery downtime.",
+    impact: "Active biomass loss & odor complaints",
   },
 ]
 
