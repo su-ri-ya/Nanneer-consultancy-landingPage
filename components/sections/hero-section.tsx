@@ -20,7 +20,7 @@ import { trackEvent } from "@/lib/analytics"
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden pt-16 pb-20 md:pt-24 md:pb-28 border-b border-border bg-transparent">
+    <section className="relative overflow-hidden pt-12 pb-16 md:pt-24 md:pb-28 border-b border-border bg-transparent">
       {/* Precision Grid & Water Ripple Animation */}
       <WaterGridBackground />
 
@@ -45,7 +45,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-extrabold tracking-tight text-foreground leading-[1.14]"
+              className="text-2xl sm:text-3xl md:text-5xl lg:text-[3.25rem] font-extrabold tracking-tight text-foreground leading-[1.18] sm:leading-[1.14]"
             >
               Where systems exist,{" "}
               <span className="text-gradient-water">but performance doesn’t meet expectations.</span>
@@ -125,7 +125,7 @@ export function HeroSection() {
           >
             <div className="relative rounded-2xl border border-border/80 bg-card overflow-hidden shadow-xl">
               {/* Plant Photo Banner */}
-              <div className="relative h-44 w-full overflow-hidden border-b border-border/60">
+              <div className="relative h-36 sm:h-44 w-full overflow-hidden border-b border-border/60">
                 <Image
                   src="/images/hero-plant.jpg"
                   alt="Industrial Wastewater Treatment Plant"
@@ -149,69 +149,69 @@ export function HeroSection() {
                 </div>
               </div>
 
-              <div className="p-5 space-y-4">
+              <div className="p-4 sm:p-5 space-y-3 sm:space-y-4">
                 <div className="flex items-center justify-between pb-1 text-xs">
                   <span className="font-semibold text-foreground">Audit & Stabilization Scope</span>
                   <span className="text-primary font-medium">Pan-India Support</span>
                 </div>
 
-              {/* 4 Clean Metric & Focus Areas */}
-              <div className="grid grid-cols-2 gap-3.5">
-                <div className="p-3.5 rounded-xl border border-border/70 bg-muted/40 space-y-1">
-                  <div className="flex items-center justify-between text-muted-foreground">
-                    <span className="text-xs font-medium">Chemical Cost</span>
-                    <TrendingDown className="h-4 w-4 text-emerald-600" />
+                {/* 4 Clean Metric & Focus Areas */}
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5">
+                  <div className="p-2.5 sm:p-3.5 rounded-xl border border-border/70 bg-muted/40 space-y-0.5 sm:space-y-1">
+                    <div className="flex items-center justify-between text-muted-foreground">
+                      <span className="text-[11px] sm:text-xs font-medium">Chemical Cost</span>
+                      <TrendingDown className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600" />
+                    </div>
+                    <div className="text-base sm:text-xl font-bold text-foreground font-mono">
+                      -18% to -35%
+                    </div>
+                    <p className="text-[10px] sm:text-[11px] text-muted-foreground">
+                      Dosage & recipe tuning
+                    </p>
                   </div>
-                  <div className="text-xl font-bold text-foreground font-mono">
-                    -18% to -35%
-                  </div>
-                  <p className="text-[11px] text-muted-foreground">
-                    Dosage & recipe tuning
-                  </p>
-                </div>
 
-                <div className="p-3.5 rounded-xl border border-border/70 bg-muted/40 space-y-1">
-                  <div className="flex items-center justify-between text-muted-foreground">
-                    <span className="text-xs font-medium">BOD / COD Norms</span>
-                    <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                  <div className="p-2.5 sm:p-3.5 rounded-xl border border-border/70 bg-muted/40 space-y-0.5 sm:space-y-1">
+                    <div className="flex items-center justify-between text-muted-foreground">
+                      <span className="text-[11px] sm:text-xs font-medium">BOD / COD</span>
+                      <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600" />
+                    </div>
+                    <div className="text-base sm:text-xl font-bold text-foreground font-mono">
+                      99%+ In-Spec
+                    </div>
+                    <p className="text-[10px] sm:text-[11px] text-muted-foreground">
+                      Pollution board norms
+                    </p>
                   </div>
-                  <div className="text-xl font-bold text-foreground font-mono">
-                    99%+ In-Spec
-                  </div>
-                  <p className="text-[11px] text-muted-foreground">
-                    Pollution board compliance
-                  </p>
-                </div>
 
-                <div className="p-3.5 rounded-xl border border-border/70 bg-muted/40 space-y-1">
-                  <div className="flex items-center justify-between text-muted-foreground">
-                    <span className="text-xs font-medium">Aeration Power</span>
-                    <Zap className="h-4 w-4 text-emerald-600" />
+                  <div className="p-2.5 sm:p-3.5 rounded-xl border border-border/70 bg-muted/40 space-y-0.5 sm:space-y-1">
+                    <div className="flex items-center justify-between text-muted-foreground">
+                      <span className="text-[11px] sm:text-xs font-medium">Aeration Power</span>
+                      <Zap className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600" />
+                    </div>
+                    <div className="text-base sm:text-xl font-bold text-foreground font-mono">
+                      -12% to -22%
+                    </div>
+                    <p className="text-[10px] sm:text-[11px] text-muted-foreground">
+                      DO & blower tuning
+                    </p>
                   </div>
-                  <div className="text-xl font-bold text-foreground font-mono">
-                    -12% to -22%
-                  </div>
-                  <p className="text-[11px] text-muted-foreground">
-                    DO & blower duty cycles
-                  </p>
-                </div>
 
-                <div className="p-3.5 rounded-xl border border-border/70 bg-muted/40 space-y-1">
-                  <div className="flex items-center justify-between text-muted-foreground">
-                    <span className="text-xs font-medium">Water Reuse</span>
-                    <Droplet className="h-4 w-4 text-emerald-600" />
+                  <div className="p-2.5 sm:p-3.5 rounded-xl border border-border/70 bg-muted/40 space-y-0.5 sm:space-y-1">
+                    <div className="flex items-center justify-between text-muted-foreground">
+                      <span className="text-[11px] sm:text-xs font-medium">Water Reuse</span>
+                      <Droplet className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600" />
+                    </div>
+                    <div className="text-base sm:text-xl font-bold text-foreground font-mono">
+                      Maximized
+                    </div>
+                    <p className="text-[10px] sm:text-[11px] text-muted-foreground">
+                      Cooling & flushing
+                    </p>
                   </div>
-                  <div className="text-xl font-bold text-foreground font-mono">
-                    Maximized
-                  </div>
-                  <p className="text-[11px] text-muted-foreground">
-                    Cooling tower & flushing
-                  </p>
                 </div>
-              </div>
 
               {/* Scope Footer note */}
-              <div className="pt-2 text-xs text-muted-foreground border-t border-border/50 flex items-center justify-between">
+              <div className="pt-2 text-xs text-muted-foreground border-t border-border/50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                 <span>Applicable to ETP, STP & ZLD</span>
                 <span className="text-primary font-medium">Direct Engineering Advisory</span>
               </div>

@@ -262,25 +262,25 @@ export function ProductsSection() {
   const wastewaterCount = systemsData.filter(s => s.category === "wastewater").length
 
   return (
-    <section id="products" className="py-20 bg-transparent border-b border-border">
+    <section id="products" className="py-12 sm:py-16 md:py-20 bg-transparent border-b border-border overflow-hidden">
       <div className="container-custom">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-12">
+        <div className="max-w-3xl mx-auto text-center space-y-2.5 sm:space-y-3 mb-8 sm:mb-12">
           <Badge variant="default" className="px-3 py-1 text-xs uppercase tracking-wider font-semibold">
             Systems & Technologies Handled
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
             Treatment Plants & Equipment We Optimize
           </h2>
-          <p className="text-base text-muted-foreground leading-relaxed">
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
             From heavy industrial ETPs to commercial STPs and precision filtration skids, we understand the physics, hydraulics, and chemistry of your exact setup. Click any system to explore technical specs and solutions.
           </p>
 
           {/* Grundfos-Style Category Filter Tabs */}
-          <div className="pt-4 flex flex-wrap items-center justify-center gap-2">
+          <div className="pt-3 sm:pt-4 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
             <button
               onClick={() => setSelectedCategory("all")}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-semibold transition-all ${
                 selectedCategory === "all"
                   ? "bg-primary text-white shadow-sm"
                   : "bg-slate-100 text-muted-foreground hover:text-foreground hover:bg-slate-200"
@@ -290,7 +290,7 @@ export function ProductsSection() {
             </button>
             <button
               onClick={() => setSelectedCategory("water")}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 ${
                 selectedCategory === "water"
                   ? "bg-cyan-700 text-white shadow-sm"
                   : "bg-cyan-50 text-cyan-900 hover:bg-cyan-100"
@@ -301,7 +301,7 @@ export function ProductsSection() {
             </button>
             <button
               onClick={() => setSelectedCategory("wastewater")}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 ${
                 selectedCategory === "wastewater"
                   ? "bg-emerald-700 text-white shadow-sm"
                   : "bg-emerald-50 text-emerald-900 hover:bg-emerald-100"
@@ -424,9 +424,9 @@ export function ProductsSection() {
       {/* Interactive Modal Dialog (Fixed Size, No Scrollbar, Executive Layout) */}
       <Dialog open={!!activeModalItem} onOpenChange={(open) => !open && setActiveModalItem(null)}>
         {activeModalItem && (
-          <DialogContent className="w-[95vw] sm:max-w-3xl lg:max-w-4xl p-0 rounded-2xl mx-auto overflow-hidden border border-border shadow-2xl bg-white">
+          <DialogContent className="w-[95vw] sm:max-w-3xl lg:max-w-4xl p-0 rounded-2xl mx-auto overflow-hidden border border-border shadow-2xl bg-white max-h-[90vh] overflow-y-auto">
             {/* Compact Header Photo Banner */}
-            <div className="relative h-36 sm:h-40 w-full overflow-hidden bg-slate-950">
+            <div className="relative h-32 sm:h-40 w-full overflow-hidden bg-slate-950 shrink-0">
               <Image
                 src={activeModalItem.image}
                 alt={activeModalItem.title}

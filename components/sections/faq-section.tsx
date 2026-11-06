@@ -39,17 +39,17 @@ const faqs = [
 
 export function FaqSection() {
   return (
-    <section id="faq" className="py-20 bg-transparent border-b border-border">
+    <section id="faq" className="py-12 sm:py-16 md:py-20 bg-transparent border-b border-border">
       <div className="container-custom">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-14">
+        <div className="max-w-3xl mx-auto text-center space-y-2.5 sm:space-y-3 mb-8 sm:mb-14">
           <Badge variant="default" className="px-3 py-1 text-xs uppercase tracking-wider font-semibold">
             Frequently Asked Questions
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
             Clear Answers for Plant & Facility Leaders
           </h2>
-          <p className="text-base text-muted-foreground leading-relaxed">
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
             Everything you need to know about engaging Nanneer Consultancy for your water and wastewater treatment facilities.
           </p>
         </div>

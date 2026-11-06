@@ -63,23 +63,23 @@ const caseStudies = [
 
 export function CaseStudiesSection() {
   return (
-    <section id="case-studies" className="py-20 bg-muted/20 border-b border-border">
+    <section id="case-studies" className="py-12 sm:py-16 md:py-20 bg-muted/20 border-b border-border">
       <div className="container-custom">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-16">
+        <div className="max-w-3xl mx-auto text-center space-y-2.5 sm:space-y-3 mb-8 sm:mb-14">
           <Badge variant="healthy" className="px-3 py-1 text-xs uppercase tracking-wider font-semibold">
             Field Evidence & Case Studies
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
             Proven On-Ground Turnarounds
           </h2>
-          <p className="text-base text-muted-foreground leading-relaxed">
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
             Real engineering results from facilities where treatment systems existed, but performance failed to meet design expectations.
           </p>
         </div>
 
         {/* 3 Case Study Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-7">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7">
           {caseStudies.map((study, index) => {
             const Icon = study.icon
             return (
@@ -89,7 +89,9 @@ export function CaseStudiesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.09 }}
-                className="rounded-2xl border border-border/80 bg-card p-6 shadow-sm hover:border-emerald-500/50 transition-all flex flex-col justify-between"
+                className={`rounded-2xl border border-border/80 bg-card p-5 sm:p-6 shadow-sm hover:border-emerald-500/50 transition-all flex flex-col justify-between ${
+                  index === 2 ? "md:col-span-2 lg:col-span-1" : ""
+                }`}
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">

@@ -81,24 +81,24 @@ const leadershipTeam = [
 
 export function WhyNanneerSection() {
   return (
-    <section id="about" className="py-20 bg-transparent border-b border-border scroll-mt-20">
-      <div id="why-nanneer" className="container-custom space-y-20">
+    <section id="about" className="py-12 sm:py-16 md:py-20 bg-transparent border-b border-border scroll-mt-20">
+      <div id="why-nanneer" className="container-custom space-y-12 sm:space-y-16">
         {/* Section 1: Core Ethos & About Us Manifesto */}
         <div>
-          <div className="max-w-3xl mx-auto text-center space-y-3 mb-16">
+          <div className="max-w-3xl mx-auto text-center space-y-2.5 sm:space-y-3 mb-8 sm:mb-14">
             <Badge variant="silt" className="px-3 py-1 text-xs uppercase tracking-wider font-semibold">
               About Nanneer Consultancy
             </Badge>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
               Practical On-Ground Problem Solving for Water Systems
             </h2>
-            <p className="text-base text-muted-foreground leading-relaxed">
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
               We bridge the gap between treatment plant design and everyday operational reality through independent engineering diagnostics, reliable shift operations, and transparent performance reporting.
             </p>
           </div>
 
           {/* 4 Pillars Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7">
             {pillars.map((pillar, index) => {
               const Icon = pillar.icon
               return (
@@ -108,7 +108,7 @@ export function WhyNanneerSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.45, delay: index * 0.08 }}
-                  className="rounded-2xl border border-border/80 bg-card p-6 shadow-xs flex items-start gap-4 hover:border-primary/40 transition-all"
+                  className="rounded-2xl border border-border/80 bg-card p-5 sm:p-6 shadow-xs flex items-start gap-3.5 sm:gap-4 hover:border-primary/40 transition-all"
                 >
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary shrink-0 mt-0.5">
                     <Icon className="h-5 w-5" />
@@ -129,7 +129,7 @@ export function WhyNanneerSection() {
 
         {/* Section 2: Leadership & Engineering Team */}
         <div className="pt-8 border-t border-border/70">
-          <div className="max-w-3xl mx-auto text-center space-y-3 mb-14">
+          <div className="max-w-3xl mx-auto text-center space-y-2.5 sm:space-y-3 mb-8 sm:mb-14">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">
               <Users className="h-3.5 w-3.5" />
               <span>Leadership & Technical Team</span>
@@ -142,7 +142,7 @@ export function WhyNanneerSection() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7">
             {leadershipTeam.map((member, index) => (
               <motion.div
                 key={member.name}
@@ -150,12 +150,12 @@ export function WhyNanneerSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="rounded-2xl border border-border/80 bg-slate-50/60 p-6 shadow-xs space-y-4 hover:border-primary/40 transition-all flex flex-col justify-between"
+                className="rounded-2xl border border-border/80 bg-slate-50/60 p-5 sm:p-6 shadow-xs space-y-4 hover:border-primary/40 transition-all flex flex-col justify-between"
               >
-                <div className="space-y-4">
-                  <div className="flex items-start gap-4">
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="flex items-start gap-3.5 sm:gap-4">
                     {/* Portrait Avatar */}
-                    <div className="relative h-16 w-16 rounded-xl overflow-hidden border-2 border-primary/20 shrink-0 shadow-xs">
+                    <div className="relative h-14 w-14 sm:h-16 sm:w-16 rounded-xl overflow-hidden border-2 border-primary/20 shrink-0 shadow-xs">
                       <Image
                         src={member.avatar}
                         alt={member.name}
@@ -164,11 +164,11 @@ export function WhyNanneerSection() {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-2">
-                        <h4 className="text-base font-bold text-foreground truncate">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1.5 sm:gap-2">
+                        <h4 className="text-base font-bold text-foreground">
                           {member.name}
                         </h4>
-                        <Badge variant="outline" className="text-[10px] font-semibold bg-white border-border shrink-0">
+                        <Badge variant="outline" className="text-[10px] font-semibold bg-white border-border w-fit shrink-0">
                           {member.experience}
                         </Badge>
                       </div>

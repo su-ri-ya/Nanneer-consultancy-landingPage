@@ -209,15 +209,15 @@ export function ServicesSection() {
   }
 
   return (
-    <section id="services" className="py-20 bg-transparent border-b border-border">
+    <section id="services" className="py-12 sm:py-16 md:py-20 bg-transparent border-b border-border overflow-hidden">
       <div className="container-custom">
         {/* Section Header with Carousel Navigation */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div className="max-w-2xl space-y-3">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-12">
+          <div className="max-w-2xl space-y-2.5 sm:space-y-3">
             <Badge variant="default" className="px-3 py-1 text-xs uppercase tracking-wider font-semibold">
               Our Core Offerings
             </Badge>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
               On-Ground Engineering & Dedicated Operations
             </h2>
             <p className="text-base text-muted-foreground leading-relaxed">
@@ -266,7 +266,7 @@ export function ServicesSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
                 onClick={() => setActiveService(service)}
-                className="w-[310px] sm:w-[370px] lg:w-[410px] shrink-0 snap-start rounded-2xl border border-border/80 bg-card overflow-hidden shadow-xs hover:border-primary/60 hover:shadow-lg transition-all flex flex-col justify-between group cursor-pointer"
+                className="w-[84vw] sm:w-[360px] lg:w-[410px] shrink-0 snap-center sm:snap-start rounded-2xl border border-border/80 bg-card overflow-hidden shadow-xs hover:border-primary/60 hover:shadow-lg transition-all flex flex-col justify-between group cursor-pointer"
               >
                 {/* Enlarged Photo Header (Grundfos Style) */}
                 <div className="relative h-56 sm:h-60 w-full overflow-hidden border-b border-border/60 bg-slate-900">
@@ -352,9 +352,9 @@ export function ServicesSection() {
       {/* Interactive Expanded Modal Dialog (Fixed Size, No Scrollbar, Executive Layout) */}
       <Dialog open={!!activeService} onOpenChange={(open) => !open && setActiveService(null)}>
         {activeService && (
-          <DialogContent className="w-[95vw] sm:max-w-3xl lg:max-w-4xl p-0 rounded-2xl mx-auto overflow-hidden border border-border shadow-2xl bg-white">
+          <DialogContent className="w-[95vw] sm:max-w-3xl lg:max-w-4xl p-0 rounded-2xl mx-auto overflow-hidden border border-border shadow-2xl bg-white max-h-[90vh] overflow-y-auto">
             {/* Compact Header Photo Banner */}
-            <div className="relative h-36 sm:h-40 w-full overflow-hidden bg-slate-950">
+            <div className="relative h-32 sm:h-40 w-full overflow-hidden bg-slate-950 shrink-0">
               <Image
                 src={activeService.image}
                 alt={activeService.title}
@@ -405,7 +405,7 @@ export function ServicesSection() {
                   <ClipboardList className="h-3.5 w-3.5 text-primary" />
                   <span>Nanneer Diagnostic & Execution Workflow</span>
                 </h4>
-                <div className="grid grid-cols-2 gap-2.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {activeService.workflowSteps.map((step, idx) => (
                     <div key={idx} className="p-2.5 rounded-lg border border-border/80 bg-slate-50 flex items-start gap-2">
                       <span className="flex h-5 w-5 items-center justify-center rounded bg-primary text-white font-bold text-[10px] shrink-0">

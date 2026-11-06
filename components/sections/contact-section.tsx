@@ -144,24 +144,24 @@ export function ContactSection() {
   const linkedin = process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://www.linkedin.com/company/nanneer-consultancy"
 
   return (
-    <section id="contact" className="py-20 bg-transparent">
+    <section id="contact" className="py-12 sm:py-16 md:py-20 bg-transparent">
       <div className="container-custom">
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-14">
+        <div className="max-w-3xl mx-auto text-center space-y-2.5 sm:space-y-3 mb-8 sm:mb-14">
           <Badge variant="default" className="px-3 py-1 text-xs uppercase tracking-wider font-semibold">
             Direct Engineering Access
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
             Schedule a Water Audit or Consult Our Team
           </h2>
-          <p className="text-base text-muted-foreground leading-relaxed">
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
             Reach out directly with your current plant symptoms or upcoming regulatory targets. A senior process specialist will review your parameters and follow up within 24 hours.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start max-w-5xl mx-auto">
           {/* Left Column: Direct Contact Info & Direct Actions */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="rounded-2xl border border-border/80 bg-card p-6 shadow-sm space-y-4">
+          <div className="lg:col-span-5 space-y-5 sm:space-y-6">
+            <div className="rounded-2xl border border-border/80 bg-card p-5 sm:p-6 shadow-sm space-y-4">
               <h3 className="text-base font-bold text-foreground">
                 Direct Specialist Channels
               </h3>
@@ -265,7 +265,7 @@ export function ContactSection() {
           </div>
 
           {/* Right Column: Validated Consultation Form */}
-          <div className="lg:col-span-7 rounded-2xl border border-border/80 bg-card p-6 sm:p-8 shadow-lg">
+          <div className="lg:col-span-7 rounded-2xl border border-border/80 bg-card p-5 sm:p-8 shadow-lg">
             <h3 className="text-lg font-bold text-foreground mb-1">
               Request Plant Audit / Consultation
             </h3>
@@ -312,7 +312,7 @@ export function ContactSection() {
                       type="text"
                       placeholder="e.g. Rajesh Kumar"
                       {...register("fullName")}
-                      className="w-full h-10 px-3 rounded-lg border border-border bg-background text-xs focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full h-10 px-3 rounded-lg border border-border bg-background text-[16px] sm:text-xs focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                     {errors.fullName && (
                       <span className="text-[11px] text-destructive">
@@ -330,7 +330,7 @@ export function ContactSection() {
                       type="text"
                       placeholder="e.g. Apex Auto Components Pvt Ltd"
                       {...register("company")}
-                      className="w-full h-10 px-3 rounded-lg border border-border bg-background text-xs focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full h-10 px-3 rounded-lg border border-border bg-background text-[16px] sm:text-xs focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                     {errors.company && (
                       <span className="text-[11px] text-destructive">
@@ -350,7 +350,7 @@ export function ContactSection() {
                       type="email"
                       placeholder="name@company.com"
                       {...register("email")}
-                      className="w-full h-10 px-3 rounded-lg border border-border bg-background text-xs focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full h-10 px-3 rounded-lg border border-border bg-background text-[16px] sm:text-xs focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                     {errors.email && (
                       <span className="text-[11px] text-destructive">
@@ -368,7 +368,7 @@ export function ContactSection() {
                       type="tel"
                       placeholder="+91 98765 43210"
                       {...register("phone")}
-                      className="w-full h-10 px-3 rounded-lg border border-border bg-background text-xs focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full h-10 px-3 rounded-lg border border-border bg-background text-[16px] sm:text-xs focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                     {errors.phone && (
                       <span className="text-[11px] text-destructive">
@@ -385,7 +385,7 @@ export function ContactSection() {
                   </label>
                   <select
                     {...register("plantType")}
-                    className="w-full h-10 px-3 rounded-lg border border-border bg-background text-xs focus:outline-none focus:ring-2 focus:ring-primary text-foreground"
+                    className="w-full h-10 px-3 rounded-lg border border-border bg-background text-[16px] sm:text-xs focus:outline-none focus:ring-2 focus:ring-primary text-foreground"
                   >
                     <option value="ETP">Industrial Effluent Treatment Plant (ETP)</option>
                     <option value="STP">Commercial / Residential Sewage Treatment Plant (STP)</option>
@@ -403,7 +403,7 @@ export function ContactSection() {
                     rows={4}
                     placeholder="Describe your current issues (e.g. High COD after clarifier, foaming in aeration tank, rising coagulant costs, upcoming SPCB audit...)"
                     {...register("issueDescription")}
-                    className="w-full p-3 rounded-lg border border-border bg-background text-xs focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full p-3 rounded-lg border border-border bg-background text-[16px] sm:text-xs focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                   {errors.issueDescription && (
                     <span className="text-[11px] text-destructive">

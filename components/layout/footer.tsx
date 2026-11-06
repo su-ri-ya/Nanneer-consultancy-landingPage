@@ -9,9 +9,9 @@ export function Footer() {
     <footer className="border-t border-border bg-white/95 backdrop-blur-md text-foreground pt-16 pb-12 transition-colors relative z-20">
       <div className="container-custom">
         {/* Top Section: Brand & Navigation Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-border/80">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-10 pb-12 border-b border-border/80">
           {/* Brand & Mission */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="sm:col-span-2 md:col-span-3 lg:col-span-2 space-y-4">
             <Link href="/" className="inline-block py-1">
               <Image
                 src="/logo.png"

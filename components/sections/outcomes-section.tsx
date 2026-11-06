@@ -40,23 +40,23 @@ const metrics = [
 
 export function OutcomesSection() {
   return (
-    <section id="outcomes" className="py-20 bg-transparent border-b border-border">
+    <section id="outcomes" className="py-12 sm:py-16 md:py-20 bg-transparent border-b border-border">
       <div className="container-custom">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-16">
+        <div className="max-w-3xl mx-auto text-center space-y-2.5 sm:space-y-3 mb-8 sm:mb-14">
           <Badge variant="healthy" className="px-3 py-1 text-xs uppercase tracking-wider font-semibold">
             Demonstrated Results
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
             Measurable Plant Performance Gains
           </h2>
-          <p className="text-base text-muted-foreground leading-relaxed">
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
             Our consulting engagements are measured by tangible reductions in operating costs, stable discharge parameters, and complete peace of mind during regulatory reviews.
           </p>
         </div>
 
         {/* 4 Clean Metric Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
           {metrics.map((metric, index) => {
             const Icon = metric.icon
             return (
@@ -66,7 +66,7 @@ export function OutcomesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="rounded-2xl border border-border/80 bg-card p-6 shadow-sm hover:border-emerald-500/40 transition-all flex flex-col justify-between"
+                className="rounded-2xl border border-border/80 bg-card p-5 sm:p-6 shadow-sm hover:border-emerald-500/40 transition-all flex flex-col justify-between"
               >
                 <div className="space-y-4">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">

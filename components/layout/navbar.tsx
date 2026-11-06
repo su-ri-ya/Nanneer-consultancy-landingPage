@@ -1,28 +1,24 @@
 "use client"
 
 import * as React from "react"
+import { createPortal } from "react-dom"
 import Link from "next/link"
 import Image from "next/image"
+import { motion, AnimatePresence } from "framer-motion"
 import {
   Droplets,
   Menu,
+  X,
   PhoneCall,
   Activity,
   ChevronDown,
+  ChevronRight,
   Waves,
   Factory,
   ArrowRight,
   MessageSquare
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogClose
-} from "@/components/ui/dialog"
 import { trackEvent } from "@/lib/analytics"
 
 export const productCategories = {
@@ -43,10 +39,28 @@ export const productCategories = {
 }
 
 export function Navbar() {
+  const [mounted, setMounted] = React.useState(false)
   const [scrolled, setScrolled] = React.useState(false)
   const [activeSection, setActiveSection] = React.useState("")
   const [productsOpen, setProductsOpen] = React.useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+  const [mobileProductsOpen, setMobileProductsOpen] = React.useState(false)
   const dropdownRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  React.useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [mobileMenuOpen])
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -288,134 +302,229 @@ export function Navbar() {
             asChild
             variant="default"
             size="sm"
-            className="inline-flex gap-2 font-semibold shadow-md shadow-primary/25 hover:shadow-primary/40 bg-primary hover:bg-primary/95 text-white h-9 text-xs sm:text-sm px-3 sm:px-4"
+            className="inline-flex gap-1.5 sm:gap-2 font-semibold shadow-md shadow-primary/25 hover:shadow-primary/40 bg-primary hover:bg-primary/95 text-white h-9 text-xs sm:text-sm px-2.5 sm:px-4"
             onClick={() => trackEvent("navbar_cta_click", { label: "Schedule Plant Audit" })}
           >
             <a href="#contact">
               <PhoneCall className="h-3.5 w-3.5" />
-              <span>Schedule Plant Audit</span>
+              <span className="hidden sm:inline">Schedule Plant Audit</span>
+              <span className="sm:hidden">Book Audit</span>
             </a>
           </Button>
 
-          {/* Mobile Menu (Radix Dialog) */}
-          <div className="lg:hidden">
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-9 w-9 border-border"
-                  aria-label="Open mobile navigation menu"
-                >
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="max-w-xs sm:max-w-sm rounded-2xl max-h-[85vh] overflow-y-auto">
-                <DialogHeader className="border-b border-border/60 pb-3">
-                  <DialogTitle className="flex items-center gap-2 text-left">
-                    <Droplets className="h-5 w-5 text-primary" />
-                    <span>Nanneer Consultancy</span>
-                  </DialogTitle>
-                </DialogHeader>
-
-                <div className="flex flex-col gap-1 py-3">
-                  <DialogClose asChild>
-                    <a
-                      href="#services"
-                      className="px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/70 transition-colors"
-                    >
-                      Services
-                    </a>
-                  </DialogClose>
-
-                  {/* Mobile Products Subsections */}
-                  <div className="py-2 px-3 space-y-2 border-y border-border/50 my-1 bg-slate-50/70 rounded-lg">
-                    <span className="text-xs font-bold text-foreground block">
-                      Products & Systems
-                    </span>
-                    
-                    <div className="space-y-1 pl-2 border-l-2 border-cyan-500">
-                      <span className="text-[11px] font-semibold text-cyan-800 uppercase tracking-wide block">
-                        Water Treatment
-                      </span>
-                      {productCategories.waterTreatment.map((item, idx) => (
-                        <DialogClose asChild key={idx}>
-                          <a
-                            href={item.href}
-                            className="block text-xs text-muted-foreground hover:text-foreground py-0.5"
-                          >
-                            • {item.name}
-                          </a>
-                        </DialogClose>
-                      ))}
-                    </div>
-
-                    <div className="space-y-1 pl-2 border-l-2 border-emerald-500 pt-2">
-                      <span className="text-[11px] font-semibold text-emerald-800 uppercase tracking-wide block">
-                        Wastewater Treatment
-                      </span>
-                      {productCategories.wastewaterTreatment.map((item, idx) => (
-                        <DialogClose asChild key={idx}>
-                          <a
-                            href={item.href}
-                            className="block text-xs text-muted-foreground hover:text-foreground py-0.5"
-                          >
-                            • {item.name}
-                          </a>
-                        </DialogClose>
-                      ))}
-                    </div>
-                  </div>
-
-                  <DialogClose asChild>
-                    <a
-                      href="#case-studies"
-                      className="px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/70 transition-colors"
-                    >
-                      Case Studies
-                    </a>
-                  </DialogClose>
-                  <DialogClose asChild>
-                    <a
-                      href="#about"
-                      className="px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/70 transition-colors"
-                    >
-                      About Us
-                    </a>
-                  </DialogClose>
-                  <DialogClose asChild>
-                    <a
-                      href="#contact"
-                      className="px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/70 transition-colors"
-                    >
-                      Contact
-                    </a>
-                  </DialogClose>
-                </div>
-
-                <div className="border-t border-border/60 pt-3 flex flex-col gap-2.5">
-                  <DialogClose asChild>
-                    <Button asChild className="w-full gap-2">
-                      <a href="#contact">
-                        <PhoneCall className="h-4 w-4" />
-                        Schedule a Water Audit
-                      </a>
-                    </Button>
-                  </DialogClose>
-                  <DialogClose asChild>
-                    <Button asChild variant="outline" className="w-full gap-2">
-                      <a href="#health-check">
-                        <Activity className="h-4 w-4 text-aqua" />
-                        Run Plant Health Check
-                      </a>
-                    </Button>
-                  </DialogClose>
-                </div>
-              </DialogContent>
-            </Dialog>
-          </div>
+          {/* Mobile Hamburger Toggle Button */}
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => setMobileMenuOpen(true)}
+            className="lg:hidden h-9 w-9 border-border bg-white text-foreground hover:bg-slate-50"
+            aria-label="Open mobile navigation menu"
+          >
+            <Menu className="h-5 w-5" />
+          </Button>
         </div>
       </div>
+
+      {/* Mobile Slide-over Drawer (Sheet) rendered via Portal to escape header containing block */}
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <div className="fixed inset-0 z-[999] lg:hidden">
+                {/* Full-screen Dark Backdrop */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="fixed inset-0 bg-black/75 backdrop-blur-sm z-[999]"
+                  aria-hidden="true"
+                />
+
+                {/* 100% Solid Opaque Slide-in Panel from Right */}
+                <motion.div
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "100%" }}
+                  transition={{ type: "spring", damping: 28, stiffness: 280 }}
+                  style={{ backgroundColor: "#ffffff" }}
+                  className="fixed inset-y-0 right-0 w-[85vw] max-w-sm h-full bg-white text-foreground shadow-2xl border-l border-border flex flex-col justify-between z-[1000] overflow-hidden"
+                >
+                  {/* Drawer Header */}
+                  <div className="flex items-center justify-between p-4 border-b border-border/70 bg-white">
+                    <div className="flex items-center gap-2">
+                      <Image
+                        src="/logo.png"
+                        alt="Nanneer Consultancy"
+                        width={130}
+                        height={40}
+                        className="h-8 w-auto object-contain"
+                      />
+                    </div>
+                    <button
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="h-8 w-8 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-slate-100 transition-colors"
+                      aria-label="Close mobile navigation menu"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+
+                  {/* Drawer Navigation Links */}
+                  <div className="flex-1 overflow-y-auto p-4 space-y-1 bg-white">
+                    <a
+                      href="#services"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-foreground hover:bg-slate-50 transition-colors"
+                    >
+                      <span>Services & Advisory</span>
+                      <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                    </a>
+
+                    {/* Collapsible Products & Systems Accordion */}
+                    <div className="rounded-xl border border-border/70 overflow-hidden bg-slate-50/60 my-2">
+                      <button
+                        onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                        className="w-full flex items-center justify-between px-3.5 py-2.5 text-sm font-semibold text-foreground hover:bg-slate-100 transition-colors"
+                      >
+                        <span className="flex items-center gap-2">
+                          <Waves className="h-4 w-4 text-cyan-600" />
+                          <span>Products & Systems</span>
+                        </span>
+                        <ChevronDown
+                          className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${
+                            mobileProductsOpen ? "rotate-180 text-primary" : ""
+                          }`}
+                        />
+                      </button>
+
+                      {mobileProductsOpen && (
+                        <div className="p-3 pt-1 space-y-3 bg-white border-t border-border/60">
+                          {/* Water Treatment */}
+                          <div className="space-y-1">
+                            <span className="text-[10px] font-bold text-cyan-800 uppercase tracking-wider block">
+                              Water Treatment
+                            </span>
+                            {productCategories.waterTreatment.map((item, idx) => (
+                              <a
+                                key={idx}
+                                href={item.href}
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="block text-xs text-muted-foreground hover:text-primary py-1 pl-2 border-l border-cyan-400"
+                              >
+                                {item.name}
+                              </a>
+                            ))}
+                          </div>
+
+                          {/* Wastewater Treatment */}
+                          <div className="space-y-1 pt-1 border-t border-border/50">
+                            <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-wider block">
+                              Wastewater Treatment
+                            </span>
+                            {productCategories.wastewaterTreatment.map((item, idx) => (
+                              <a
+                                key={idx}
+                                href={item.href}
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="block text-xs text-muted-foreground hover:text-primary py-1 pl-2 border-l border-emerald-400"
+                              >
+                                {item.name}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    <a
+                      href="#case-studies"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-foreground hover:bg-slate-50 transition-colors"
+                    >
+                      <span>Case Studies</span>
+                      <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                    </a>
+
+                    <a
+                      href="#outcomes"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-foreground hover:bg-slate-50 transition-colors"
+                    >
+                      <span>Verified Outcomes</span>
+                      <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                    </a>
+
+                    <a
+                      href="#about"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-foreground hover:bg-slate-50 transition-colors"
+                    >
+                      <span>About Nanneer</span>
+                      <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                    </a>
+
+                    <a
+                      href="#faq"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-foreground hover:bg-slate-50 transition-colors"
+                    >
+                      <span>FAQ</span>
+                      <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                    </a>
+
+                    <a
+                      href="#contact"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold text-foreground hover:bg-slate-50 transition-colors"
+                    >
+                      <span>Contact & Plant Audit</span>
+                      <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                    </a>
+                  </div>
+
+                  {/* Drawer Footer Actions */}
+                  <div className="p-4 border-t border-border/70 space-y-2.5 bg-slate-50">
+                    <Button
+                      asChild
+                      className="w-full gap-2 font-semibold bg-primary hover:bg-primary/95 text-white h-10 shadow-sm"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <a href="#contact">
+                        <PhoneCall className="h-4 w-4" />
+                        <span>Schedule Plant Audit</span>
+                      </a>
+                    </Button>
+
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="w-full gap-2 border-emerald-500/50 text-emerald-700 hover:bg-emerald-50 h-10 font-semibold bg-white"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <a
+                        href="https://wa.me/919876543210?text=Hello%20Nanneer%20Consultancy,%20we%20would%20like%20to%20consult%20on%20our%20plant."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <MessageSquare className="h-4 w-4 text-emerald-600" />
+                        <span>Chat on WhatsApp</span>
+                      </a>
+                    </Button>
+
+                    <div className="pt-2 text-center">
+                      <span className="text-[11px] text-muted-foreground">
+                        Pan-India Diagnostic & Manpower Support
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
     </header>
   )
 }

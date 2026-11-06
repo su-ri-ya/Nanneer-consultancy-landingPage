@@ -53,8 +53,8 @@ export function ClientsSection() {
           </p>
         </div>
 
-        {/* Client Marquee / Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        {/* Client Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4">
           {clients.map((client, index) => {
             const Icon = client.icon
             return (
@@ -64,7 +64,7 @@ export function ClientsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.35, delay: index * 0.06 }}
-                className="p-4 rounded-xl border border-border/70 bg-card hover:border-primary/40 hover:shadow-xs transition-all flex flex-col justify-between"
+                className="p-3.5 sm:p-4 rounded-xl border border-border/70 bg-card hover:border-primary/40 hover:shadow-xs transition-all flex flex-col justify-between"
               >
                 <div className="flex items-center gap-2.5 pb-2 border-b border-border/50">
                   <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary shrink-0">

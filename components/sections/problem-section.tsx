@@ -65,23 +65,23 @@ const problems = [
 
 export function ProblemSection() {
   return (
-    <section id="problem" className="py-20 bg-transparent border-b border-border">
+    <section id="problem" className="py-12 sm:py-16 md:py-20 bg-transparent border-b border-border">
       <div className="container-custom">
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-14">
+        <div className="max-w-3xl mx-auto text-center space-y-2.5 sm:space-y-3 mb-8 sm:mb-14">
           <Badge variant="silt" className="px-3 py-1 text-xs uppercase tracking-wider font-semibold">
             Operational Headwinds
           </Badge>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
             Common Challenges Facing ETP & STP Facilities
           </h2>
-          <p className="text-base text-muted-foreground leading-relaxed">
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
             Most treatment facilities fail to achieve design specs not because of bad equipment, but due to uncalibrated chemical recipes, biological stress, and process drift.
           </p>
         </div>
 
         {/* Problem Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {problems.map((problem, index) => {
             const Icon = problem.icon
             return (
@@ -91,7 +91,7 @@ export function ProblemSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="rounded-2xl border border-border/80 bg-card p-6 shadow-sm hover:border-primary/40 transition-all flex flex-col justify-between"
+                className="rounded-2xl border border-border/80 bg-card p-5 sm:p-6 shadow-sm hover:border-primary/40 transition-all flex flex-col justify-between"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">

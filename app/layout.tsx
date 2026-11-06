@@ -111,7 +111,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
       </head>
-      <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans min-h-screen flex flex-col bg-white text-foreground`}>
+      <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans min-h-screen flex flex-col bg-white text-foreground overflow-x-hidden`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -120,7 +120,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 overflow-x-hidden">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>
