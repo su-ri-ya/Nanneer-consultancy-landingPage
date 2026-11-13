@@ -1,206 +1,271 @@
 "use client"
 
 import * as React from "react"
-import Image from "next/image"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import {
-  Compass,
-  DollarSign,
-  ShieldAlert,
-  Wrench,
-  ClipboardCheck,
+  Clock,
+  ClipboardList,
+  Camera,
+  FileText,
+  ShieldCheck,
   CheckCircle2,
-  Users,
-  Award,
-  Briefcase,
-  GraduationCap
+  FileDown
 } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
 
-const pillars = [
-  {
-    icon: Compass,
-    title: "Fundamentals-First Engineering",
-    description:
-      "We troubleshoot by analyzing hydraulic retention, mass balances, stoichiometric chemical dosages, and microbial kinetics—not by selling unnecessary hardware."
-  },
-  {
-    icon: ShieldAlert,
-    title: "100% Vendor-Neutral Advisory",
-    description:
-      "We do not manufacture or distribute chemicals, membranes, or proprietary machinery. Our recommendations are uncompromised and solely designed to optimize your existing capital assets."
-  },
-  {
-    icon: Wrench,
-    title: "On-Ground Diagnostic & Operational Presence",
-    description:
-      "We don't troubleshoot remotely from a spreadsheet. Our specialists inspect basins, pumps, clarifiers, and filtration skids directly on your site, backing up operations with trained manpower."
-  },
-  {
-    icon: ClipboardCheck,
-    title: "Audited Operational & Manpower Reports",
-    description:
-      "Complete operational transparency with monthly deployment audits—tracking required vs. deployed man-days, shift operational hours, and root-cause downtime logs to prevent plant disturbances."
-  }
-]
+interface EvidenceTier {
+  id: string
+  step: string
+  title: string
+  icon: React.ElementType
+  deliverable: string
+  detail: string
+  // Cardinal positions on orbit ring: 0 (top), 1 (right), 2 (bottom), 3 (left)
+  positionClasses: string
+}
 
-const leadershipTeam = [
+const EVIDENCE_TIERS: EvidenceTier[] = [
   {
-    name: "Founder & Chief Technical Director",
-    avatar: "/images/team-founder.jpg",
-    role: "Senior Environmental Process Engineer",
-    experience: "20+ Years in Industrial Water Engineering",
-    bio: "Pioneering practical, on-ground troubleshooting for complex industrial ETPs and commercial STPs across Tamil Nadu and Pan-India. Dedicated to eliminating operational failure points without costly capital expenditure.",
-    specialties: ["ETP Process Forensic Audits", "Biological Recovery", "Zero-Vendor-Bias Consulting"]
+    id: "shift-manning",
+    step: "01",
+    title: "24×7 STP Operators",
+    icon: Clock,
+    deliverable: "100% Shift Attendance",
+    detail: "3 shifts per day (24×7 coverage) with certified biological treatment operators.",
+    positionClasses: "top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
   },
   {
-    name: "Head of Operations & Staffing",
-    avatar: "/images/team-ops.jpg",
-    role: "Lead Field Operations Engineer",
-    experience: "14+ Years in Facility & Plant Management",
-    bio: "Oversees site-level technician deployment, shift scheduling, operator training, and monthly operational log audits for marquee commercial tech parks and industrial facilities.",
-    specialties: ["Shift Manpower Deployment", "Daily Log Auditing", "24/7 Breakdown Response"]
+    id: "shift-logbook",
+    step: "02",
+    title: "Digital Shift Logbook",
+    icon: ClipboardList,
+    deliverable: "Timestamped Cloud Logs",
+    detail: "Standardized shift checklists, chemical dosing records, and backwash SOPs.",
+    positionClasses: "top-1/2 right-0 translate-x-1/2 -translate-y-1/2"
   },
   {
-    name: "Lead Chemical & Compliance Specialist",
-    avatar: "/images/team-chem.jpg",
-    role: "Environmental Chemistry & Water Testing Lead",
-    experience: "12+ Years in Laboratory & Jar Testing",
-    bio: "Specializes in stoichiometric dosage recalibration, coagulant/polymer optimization, sludge settling kinetics, and state pollution control board statutory compliance assurance.",
-    specialties: ["Jar Testing & Dosing Recalibration", "SPCB Norm Stabilization", "OPEX Cost Reduction"]
+    id: "inspection-media",
+    step: "03",
+    title: "On-Site Inspection Media",
+    icon: Camera,
+    deliverable: "Visual Incident Trail",
+    detail: "Time-stamped photographic evidence for pump conditions, clarifiers, and filter media.",
+    positionClasses: "bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2"
   },
   {
-    name: "Senior Diagnostic & Hydraulic Auditor",
-    avatar: "/images/team-audit.jpg",
-    role: "Hydraulic Modeling & Mechanical Specialist",
-    experience: "10+ Years in Treatment Plant Audits",
-    bio: "Conducts unit-by-unit mass balances, pump performance curves, dissolved oxygen (DO) aeration balancing, and dewatering press cycle optimization.",
-    specialties: ["Mass Balance & HRT Analysis", "Aeration Energy Tuning", "Clarifier Hydraulics"]
+    id: "monthly-dossier",
+    step: "04",
+    title: "Monthly Audit Dossier",
+    icon: FileText,
+    deliverable: "Executive Monthly Report",
+    detail: "Verified monthly water balance, lab certificates, and equipment run-hours.",
+    positionClasses: "top-1/2 left-0 -translate-x-1/2 -translate-y-1/2"
   }
 ]
 
 export function WhyNanneerSection() {
+  const [selectedId, setSelectedId] = React.useState<string>("monthly-dossier")
+  const [isPaused, setIsPaused] = React.useState<boolean>(false)
+  const activeTier = EVIDENCE_TIERS.find((t) => t.id === selectedId) || EVIDENCE_TIERS[3]
+
+  // Auto-cycle through tiers periodically if user is not hovering/touching
+  React.useEffect(() => {
+    if (isPaused) return
+    const interval = setInterval(() => {
+      setSelectedId((prev) => {
+        const idx = EVIDENCE_TIERS.findIndex((t) => t.id === prev)
+        return EVIDENCE_TIERS[(idx + 1) % EVIDENCE_TIERS.length].id
+      })
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [isPaused])
+
   return (
-    <section id="about" className="py-12 sm:py-16 md:py-20 bg-transparent border-b border-border scroll-mt-20">
-      <div id="why-nanneer" className="container-custom space-y-12 sm:space-y-16">
-        {/* Section 1: Core Ethos & About Us Manifesto */}
-        <div>
-          <div className="max-w-3xl mx-auto text-center space-y-2.5 sm:space-y-3 mb-8 sm:mb-14">
-            <Badge variant="silt" className="px-3 py-1 text-xs uppercase tracking-wider font-semibold">
-              About Nanneer Consultancy
-            </Badge>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-              Practical On-Ground Problem Solving for Water Systems
-            </h2>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              We bridge the gap between treatment plant design and everyday operational reality through independent engineering diagnostics, reliable shift operations, and transparent performance reporting.
-            </p>
+    <section id="why-nanneer" className="relative py-6 sm:py-8 lg:py-10 bg-transparent border-t border-black/[0.06] overflow-hidden scroll-mt-16">
+      {/* Subtle radial ambient glow */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_55%,rgba(14,165,233,0.06),transparent_70%)]" />
+
+      <div className="container relative z-10 mx-auto px-4 max-w-6xl">
+        {/* Editorial Header (Compact, Screen-Fitted) */}
+        <div className="max-w-3xl mx-auto text-center mb-4 sm:mb-5">
+          <div className="inline-flex items-center rounded-full border border-sky-400/50 bg-sky-50/50 px-3.5 py-0.5 shadow-2xs mb-2">
+            <span className="font-mono text-[11px] font-bold tracking-widest text-slate-800 uppercase">
+              EVIDENCE-BASED ACCOUNTABILITY
+            </span>
           </div>
 
-          {/* 4 Pillars Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7">
-            {pillars.map((pillar, index) => {
-              const Icon = pillar.icon
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
+            Every Shift Documented.{" "}
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-400 to-teal-400 font-extrabold mt-0.5">
+              Every Month Accounted For.
+            </span>
+          </h2>
+
+          <p className="mt-1.5 text-xs sm:text-sm text-slate-600 max-w-lg mx-auto leading-relaxed">
+            Transforming routine STP operations into a structured, permanent operational record.
+          </p>
+        </div>
+
+        {/* Unified Planetary Orbit Diagram (Runs smoothly on Mobile, Tablet & Desktop) */}
+        <div
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
+          className="relative flex items-center justify-center w-full max-w-2xl mx-auto h-[270px] sm:h-[310px] lg:h-[330px] my-1 sm:my-2"
+        >
+          {/* Custom Keyframe Rules to Guarantee Smooth Spin on all Mobile Browsers */}
+          <style dangerouslySetInnerHTML={{ __html: `
+            @keyframes smoothOrbit {
+              from { transform: rotate(0deg); }
+              to { transform: rotate(360deg); }
+            }
+            @keyframes smoothCounterOrbit {
+              from { transform: rotate(0deg); }
+              to { transform: rotate(-360deg); }
+            }
+          `}} />
+
+          {/* Static Outer Track Ring */}
+          <div className="absolute w-[180px] h-[180px] sm:w-[230px] sm:h-[230px] lg:w-[250px] lg:h-[250px] rounded-full border border-slate-200/90 pointer-events-none" />
+
+          {/* Static Inner Radar Dashed Ring */}
+          <div className="absolute w-[120px] h-[120px] sm:w-[155px] sm:h-[155px] lg:w-[170px] lg:h-[170px] rounded-full border border-dashed border-slate-200/60 pointer-events-none" />
+
+          {/* Central Static AUDIT Hub (Stationary Core) */}
+          <div className="relative z-20 flex flex-col items-center justify-center pointer-events-none select-none">
+            {/* Animated Sonar Pulse Wave */}
+            <motion.div
+              animate={{ scale: [1, 1.25, 1], opacity: [0.35, 0, 0.35] }}
+              transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
+              className="absolute -inset-2 rounded-full border border-sky-400/40 pointer-events-none"
+            />
+
+            {/* Hub Frame */}
+            <div className="w-16 h-16 sm:w-22 sm:h-22 lg:w-24 lg:h-24 rounded-full border border-slate-200/80 bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-xs">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 lg:w-18 lg:h-18 rounded-full bg-white border border-slate-200/90 shadow-md flex flex-col items-center justify-center gap-0.5">
+                <ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5 text-slate-900 stroke-[2.2]" />
+                <span className="font-mono text-[8px] sm:text-[9px] font-extrabold tracking-widest text-slate-900 uppercase">
+                  AUDIT
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Continuous Rotating Orbit Ring Layer */}
+          <div
+            style={{
+              animation: "smoothOrbit 45s linear infinite",
+              animationPlayState: isPaused ? "paused" : "running"
+            }}
+            className="absolute w-[180px] h-[180px] sm:w-[230px] sm:h-[230px] lg:w-[250px] lg:h-[250px] rounded-full z-30"
+          >
+            {/* Orbiting Glowing Cyan Beacon Dot with Pulse */}
+            <div className="absolute top-[18%] right-[5%] -translate-y-1/2 pointer-events-none">
+              <span className="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 sm:h-3 sm:w-3 bg-cyan-400 shadow-[0_0_12px_#22d3ee]" />
+              </span>
+            </div>
+
+            {/* 4 Orbiting Nodes */}
+            {EVIDENCE_TIERS.map((tier) => {
+              const Icon = tier.icon
+              const isSelected = selectedId === tier.id
+
               return (
-                <motion.div
-                  key={pillar.title}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: index * 0.08 }}
-                  className="rounded-2xl border border-border/80 bg-card p-5 sm:p-6 shadow-xs flex items-start gap-3.5 sm:gap-4 hover:border-primary/40 transition-all"
+                <div
+                  key={tier.id}
+                  onClick={() => setSelectedId(tier.id)}
+                  className={`absolute ${tier.positionClasses} cursor-pointer group`}
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary shrink-0 mt-0.5">
-                    <Icon className="h-5 w-5" />
+                  {/* Counter-Rotation Wrapper: Rotates reverse so node stays strictly upright */}
+                  <div
+                    style={{
+                      animation: "smoothCounterOrbit 45s linear infinite",
+                      animationPlayState: isPaused ? "paused" : "running"
+                    }}
+                    className="flex flex-col items-center"
+                  >
+                    {/* Circular White Floating Card */}
+                    <div
+                      className={`w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white border flex items-center justify-center transition-all duration-300 shadow-md ${
+                        isSelected
+                          ? "border-sky-500 ring-4 ring-sky-500/20 scale-110 shadow-lg"
+                          : "border-slate-200/90 hover:border-slate-300 hover:scale-105"
+                      }`}
+                    >
+                      <Icon
+                        className={`h-4 w-4 sm:h-5 sm:w-5 transition-colors duration-200 ${
+                          isSelected ? "text-sky-600 stroke-[2.2]" : "text-slate-800 stroke-[1.8] group-hover:text-slate-900"
+                        }`}
+                      />
+                    </div>
+
+                    {/* Unified Pill Label Below Icon (Mobile & Desktop) */}
+                    <div
+                      className={`mt-1 sm:mt-1.5 px-2 sm:px-2.5 py-0.5 rounded-full border bg-white/95 backdrop-blur-xs shadow-2xs text-[9px] sm:text-[10px] font-semibold whitespace-nowrap transition-all duration-200 ${
+                        isSelected
+                          ? "border-sky-500/80 bg-sky-50/90 text-slate-900 shadow-xs scale-105 ring-2 ring-sky-500/20"
+                          : "border-slate-200/90 text-slate-700 group-hover:border-slate-300"
+                      }`}
+                    >
+                      <span className="font-mono text-[8px] sm:text-[9px] font-bold text-sky-700 mr-1">{tier.step}</span>
+                      <span className="hidden sm:inline">{tier.title}</span>
+                      <span className="sm:hidden">{tier.title.replace("24×7 STP ", "").replace("Digital ", "").replace("On-Site ", "").replace("Monthly ", "")}</span>
+                    </div>
                   </div>
-                  <div className="space-y-1.5">
-                    <h3 className="text-base font-bold text-foreground">
-                      {pillar.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                      {pillar.description}
-                    </p>
-                  </div>
-                </motion.div>
+                </div>
               )
             })}
           </div>
         </div>
 
-        {/* Section 2: Leadership & Engineering Team */}
-        <div className="pt-8 border-t border-border/70">
-          <div className="max-w-3xl mx-auto text-center space-y-2.5 sm:space-y-3 mb-8 sm:mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">
-              <Users className="h-3.5 w-3.5" />
-              <span>Leadership & Technical Team</span>
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-              The Engineers Behind Your Plant&apos;s Performance
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Our multidisciplinary team combines chemical engineers, environmental scientists, and certified plant operators who have diagnosed and stabilized hundreds of treatment systems across India.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7">
-            {leadershipTeam.map((member, index) => (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="rounded-2xl border border-border/80 bg-slate-50/60 p-5 sm:p-6 shadow-xs space-y-4 hover:border-primary/40 transition-all flex flex-col justify-between"
-              >
-                <div className="space-y-3 sm:space-y-4">
-                  <div className="flex items-start gap-3.5 sm:gap-4">
-                    {/* Portrait Avatar */}
-                    <div className="relative h-14 w-14 sm:h-16 sm:w-16 rounded-xl overflow-hidden border-2 border-primary/20 shrink-0 shadow-xs">
-                      <Image
-                        src={member.avatar}
-                        alt={member.name}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1.5 sm:gap-2">
-                        <h4 className="text-base font-bold text-foreground">
-                          {member.name}
-                        </h4>
-                        <Badge variant="outline" className="text-[10px] font-semibold bg-white border-border w-fit shrink-0">
-                          {member.experience}
-                        </Badge>
-                      </div>
-                      <span className="text-xs font-semibold text-primary block mt-0.5">
-                        {member.role}
-                      </span>
-                    </div>
-                  </div>
-
-                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                    {member.bio}
-                  </p>
-                </div>
-
-                <div className="pt-3 border-t border-border/60">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground block mb-2">
-                    Key Focus Areas:
+        {/* Selected Tier Detail Bar (Unified for Mobile & Desktop) */}
+        <div className="max-w-2xl mx-auto mt-2 px-2 sm:px-4">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTier.id}
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.15 }}
+              className="rounded-2xl border border-slate-200/90 bg-white sm:bg-slate-50/90 p-3 sm:p-4 shadow-xs sm:shadow-2xs space-y-2"
+            >
+              {/* Row 1: Header with Tier Badge, Title, and Deliverable Status Pill */}
+              <div className="flex items-center justify-between gap-2 sm:gap-3">
+                <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                  {activeTier.step !== "04" && (
+                    <span className="font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-sky-700 bg-sky-100/80 px-2 sm:px-2.5 py-0.5 rounded-full shrink-0">
+                      Tier {activeTier.step}
+                    </span>
+                  )}
+                  <span className="font-bold text-slate-900 text-xs sm:text-sm truncate">
+                    {activeTier.title}
                   </span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {member.specialties.map((spec, i) => (
-                      <span
-                        key={i}
-                        className="text-[11px] font-medium px-2.5 py-1 rounded-md bg-white border border-border text-foreground/80"
-                      >
-                        {spec}
-                      </span>
-                    ))}
-                  </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+                <div className="shrink-0 flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-0.5 rounded-full bg-white border border-slate-200 text-[10px] sm:text-[11px] font-mono font-semibold text-emerald-700 shadow-2xs">
+                  <CheckCircle2 className="h-3 w-3 text-emerald-600 shrink-0" />
+                  <span className="truncate max-w-[120px] sm:max-w-none">{activeTier.deliverable}</span>
+                </div>
+              </div>
+
+              {/* Row 2: Detail Text and Action Button */}
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 pt-1.5 border-t border-slate-200/60">
+                <p className="text-xs text-slate-600 leading-relaxed max-w-md">
+                  {activeTier.detail}
+                </p>
+                <a
+                  href="/documents/PRESTIGE_POLYGON_STP_240_KLD_SEPTEMBER_2026.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-sky-600 hover:bg-sky-700 text-white text-[11px] font-semibold shadow-xs transition-colors self-start sm:self-center w-full sm:w-auto"
+                >
+                  <FileDown className="h-3.5 w-3.5" />
+                  <span>Download Sample Report (PDF)</span>
+                </a>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>

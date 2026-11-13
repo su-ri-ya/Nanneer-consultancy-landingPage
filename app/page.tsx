@@ -1,50 +1,47 @@
+"use client"
+
+import { WaterGridBackground } from "@/components/ui/water-grid-background"
 import { HeroSection } from "@/components/sections/hero-section"
-import { ClientsSection } from "@/components/sections/clients-section"
 import { ProblemSection } from "@/components/sections/problem-section"
 import { ServicesSection } from "@/components/sections/services-section"
-import { ProductsSection } from "@/components/sections/products-section"
-import { CaseStudiesSection } from "@/components/sections/case-studies-section"
+import { IntelligenceEngineSection } from "@/components/sections/intelligence-engine-section"
 import { OutcomesSection } from "@/components/sections/outcomes-section"
 import { WhyNanneerSection } from "@/components/sections/why-nanneer-section"
-import { FaqSection } from "@/components/sections/faq-section"
 import { ContactSection } from "@/components/sections/contact-section"
-import { WaterFlowBackground } from "@/components/ui/water-flow-background"
+import { FaqSection } from "@/components/sections/faq-section"
 
 export default function HomePage() {
   return (
-    <div className="relative isolate">
-      {/* Dynamic Water Engineering Ambient Background Flow */}
-      <WaterFlowBackground />
+    <div className="relative isolate min-h-screen bg-transparent">
+      {/* 1. Global Water Blueprint Grid Background */}
+      <WaterGridBackground />
 
-      {/* 1. Hero: Official Mission Statement & Diagnostic Snapshot */}
-      <HeroSection />
+      <main className="relative z-10">
+        {/* 1. Hero: Nanneer Global STP O&M · Every Drop Treated. Every Drop Accounted For. */}
+        <HeroSection />
 
-      {/* 2. Common Plant Challenges & Operational Gaps */}
-      <ProblemSection />
+        {/* 2. Value Proposition: Outcomes, Not Just Manpower (6 Critical Questions) */}
+        <ProblemSection />
 
-      {/* 3. Core Services: Practical Engineering & Dedicated Operations Manpower */}
-      <ServicesSection />
+        {/* 3. Reliable Operations: Six Areas We Monitor & Report (Methodology & Monitoring) */}
+        <IntelligenceEngineSection />
 
-      {/* 4. Products & Treatment Systems We Optimize */}
-      <ProductsSection />
+        {/* 4. Water Recovery: Every Litre Has a Destination (Solution & Applications) */}
+        <ServicesSection />
 
-      {/* 5. Real-World Case Studies & Turnarounds (Field Proof) */}
-      <CaseStudiesSection />
+        {/* 5. Commitments & Impact: Operational Performance Targets & Building Benefits */}
+        <OutcomesSection />
 
-      {/* 6. Measurable Outcomes & Verified Metrics */}
-      <OutcomesSection />
+        {/* 6. Accountability: Every Shift Documented. Every Month Accounted For. (Monthly Reports) */}
+        <WhyNanneerSection />
 
-      {/* 7. About Nanneer: Founder, Leadership Team, Engineering Ethos & Audited Logs */}
-      <WhyNanneerSection />
+        {/* 7. Action: Let's Discuss Your STP Performance (Assessment Request) */}
+        <ContactSection />
 
-      {/* 8. Frequently Asked Questions */}
-      <FaqSection />
-
-      {/* 9. Enterprise Clients & Track Record (Right Above Contact) */}
-      <ClientsSection />
-
-      {/* 10. Contact & Plant Audit Booking */}
-      <ContactSection />
+        {/* 8. Knowledge: STP Operations & Maintenance FAQ */}
+        <FaqSection />
+      </main>
     </div>
   )
 }
+

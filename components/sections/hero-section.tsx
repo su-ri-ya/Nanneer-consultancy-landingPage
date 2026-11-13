@@ -3,221 +3,102 @@
 import * as React from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import {
-  ArrowRight,
-  ShieldCheck,
-  CheckCircle2,
-  Droplet,
-  Gauge,
-  FlaskConical,
-  Zap,
-  TrendingDown
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { WaterGridBackground } from "@/components/ui/water-grid-background"
-import { trackEvent } from "@/lib/analytics"
+import { HelpCircle } from "lucide-react"
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden pt-12 pb-16 md:pt-24 md:pb-28 border-b border-border bg-transparent">
-      {/* Precision Grid & Water Ripple Animation */}
-      <WaterGridBackground />
+    <section className="relative overflow-hidden bg-transparent min-h-[calc(100vh-4.5rem)] flex items-center py-8 sm:py-14 lg:py-16 border-b border-black/[0.06]">
+      {/* Subtle Blue Radial Ambient Glow */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(0,102,204,0.07),transparent_70%)]" />
 
-      <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Problem-Led Messaging */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            {/* Eyebrow */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-10 w-full min-w-0">
+          
+          {/* Left Column: 100% Question-Driven Hook & Diagnostic Reality Check (5 cols) */}
+          <div className="lg:col-span-5 text-center lg:text-left space-y-5 sm:space-y-6 w-full min-w-0">
+            
+            {/* Audience Eyebrow Pill */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2"
+              transition={{ duration: 0.4 }}
+              className="inline-block max-w-full"
             >
-              <Badge variant="default" className="px-3.5 py-1 text-xs uppercase tracking-wider font-semibold">
-                Introducing Nanneer Consultancy · ETP & STP Engineering Advisory
-              </Badge>
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 rounded-2xl sm:rounded-full border border-blue-600/20 bg-blue-50/80 px-2.5 sm:px-3.5 py-1 text-xs font-semibold text-blue-900 shadow-2xs max-w-full">
+                <span className="h-2 w-2 rounded-full bg-blue-600 animate-pulse shrink-0" />
+                <span className="font-mono text-[9px] xs:text-[10px] sm:text-[11px] font-bold uppercase tracking-normal sm:tracking-wider text-left break-words leading-tight">
+                  FOR COMMERCIAL BUILDING OWNERS &amp; FACILITY HEADS
+                </span>
+              </div>
             </motion.div>
 
-            {/* Official Problem-led H1 */}
+            {/* Loud & Clear Question Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.1 }}
-              className="text-2xl sm:text-3xl md:text-5xl lg:text-[3.25rem] font-extrabold tracking-tight text-foreground leading-[1.18] sm:leading-[1.14]"
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-xl xs:text-2xl sm:text-4xl md:text-5xl lg:text-[3.15rem] font-extrabold tracking-tight text-slate-950 leading-[1.2] sm:leading-[1.12] break-words"
             >
-              Where systems exist,{" "}
-              <span className="text-gradient-water">but performance doesn’t meet expectations.</span>
+              Your STP Is Running.{" "}
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-sky-600 to-teal-600 mt-1">
+                But Is It Really{" "}
+                <span className="inline-block">Performing?</span>
+              </span>
             </motion.h1>
 
-            {/* Official Subheading */}
+            {/* Subtitle: Rhythmic Couplet (Thirukkural 4 + 3 Word Cadence) */}
             <motion.p
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.2 }}
-              className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto lg:mx-0"
+              transition={{ duration: 0.5, delay: 0.16 }}
+              className="text-xs sm:text-base md:text-lg text-slate-800 leading-relaxed font-semibold max-w-xl mx-auto lg:mx-0 break-words px-1 sm:px-0"
             >
-              We work with industries and commercial buildings to solve real-world water treatment challenges. Across ETP and STP setups, issues like inconsistent output, operational inefficiencies, and rising costs are more common than they should be. Our role is to step in, understand these systems at a fundamental level, and resolve the gaps that impact performance.
+              Measure every single drop; stop guessing plant performance.
             </motion.p>
 
-
-            {/* Action Buttons */}
+            {/* 3 Diagnostic Question Pills */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2"
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="flex flex-col gap-2 sm:gap-2.5 max-w-md mx-auto lg:mx-0 w-full"
             >
-              <Button
-                asChild
-                size="lg"
-                className="w-full sm:w-auto shadow-md font-semibold gap-2 bg-primary hover:bg-primary/90 text-white px-7"
-                onClick={() => trackEvent("hero_primary_cta_click", { target: "contact" })}
-              >
-                <a href="#contact">
-                  <span>Schedule a Plant Audit</span>
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-              </Button>
-
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="w-full sm:w-auto font-medium gap-2 px-6"
-                onClick={() => trackEvent("hero_secondary_cta_click", { target: "services" })}
-              >
-                <a href="#services">
-                  <span>Explore Advisory Services</span>
-                </a>
-              </Button>
+              <div className="flex items-center gap-2 sm:gap-2.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-slate-100/90 border border-slate-200 text-[11px] sm:text-[13px] font-semibold text-slate-800 text-left">
+                <HelpCircle className="h-4 w-4 text-blue-600 shrink-0" />
+                <span className="flex-1 break-words leading-snug">Is 100% of your sewage treated without bypass?</span>
+              </div>
+              <div className="flex items-center gap-2 sm:gap-2.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-slate-100/90 border border-slate-200 text-[11px] sm:text-[13px] font-semibold text-slate-800 text-left">
+                <HelpCircle className="h-4 w-4 text-emerald-600 shrink-0" />
+                <span className="flex-1 break-words leading-snug">Are you reusing enough water to cut tanker bills?</span>
+              </div>
+              <div className="flex items-center gap-2 sm:gap-2.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-slate-100/90 border border-slate-200 text-[11px] sm:text-[13px] font-semibold text-slate-800 text-left">
+                <HelpCircle className="h-4 w-4 text-sky-600 shrink-0" />
+                <span className="flex-1 break-words leading-snug">Can your logbooks prove zero compliance risk?</span>
+              </div>
             </motion.div>
 
-            {/* Verified Trust Badges */}
+          </div>
+
+          {/* Right Column: Extra Large, Ultra-Clear Single Photo (7 cols) */}
+          <div className="lg:col-span-7 w-full min-w-0">
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="pt-3 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-xs text-muted-foreground"
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative w-full aspect-[16/11] sm:aspect-[16/10] lg:aspect-[16/10] min-h-[260px] sm:min-h-[400px] lg:min-h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-black/[0.08] bg-slate-100 group"
             >
-              <div className="flex items-center gap-1.5">
-                <ShieldCheck className="h-4 w-4 text-emerald-600" />
-                <span>On-Ground Root Cause Audit</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <ShieldCheck className="h-4 w-4 text-emerald-600" />
-                <span>15%–35% OPEX Reduction</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <ShieldCheck className="h-4 w-4 text-emerald-600" />
-                <span>100% Statutory Compliance</span>
-              </div>
+              <Image
+                src="/images/hero-stp-clarifiers.jpg"
+                alt="Commercial High-Performance Wastewater Treatment Plant with Circular Clarifiers"
+                fill
+                priority
+                quality={100}
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
             </motion.div>
           </div>
 
-          {/* Right Column: Clean Executive Diagnostic Overview Card with Real Plant Visual */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-5"
-          >
-            <div className="relative rounded-2xl border border-border/80 bg-card overflow-hidden shadow-xl">
-              {/* Plant Photo Banner */}
-              <div className="relative h-36 sm:h-44 w-full overflow-hidden border-b border-border/60">
-                <Image
-                  src="/images/hero-plant.jpg"
-                  alt="Industrial Wastewater Treatment Plant"
-                  fill
-                  priority
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <div className="absolute top-3 right-3">
-                  <Badge variant="healthy" className="text-[10px] font-semibold shadow-xs">
-                    On-Site Diagnostic Audit
-                  </Badge>
-                </div>
-                <div className="absolute bottom-3 left-4 right-4 text-white">
-                  <span className="text-[10px] uppercase font-mono tracking-wider opacity-85 block">
-                    ETP & STP Performance Engineering
-                  </span>
-                  <h3 className="text-sm font-bold">
-                    Plant Performance Benchmark
-                  </h3>
-                </div>
-              </div>
-
-              <div className="p-4 sm:p-5 space-y-3 sm:space-y-4">
-                <div className="flex items-center justify-between pb-1 text-xs">
-                  <span className="font-semibold text-foreground">Audit & Stabilization Scope</span>
-                  <span className="text-primary font-medium">Pan-India Support</span>
-                </div>
-
-                {/* 4 Clean Metric & Focus Areas */}
-                <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5">
-                  <div className="p-2.5 sm:p-3.5 rounded-xl border border-border/70 bg-muted/40 space-y-0.5 sm:space-y-1">
-                    <div className="flex items-center justify-between text-muted-foreground">
-                      <span className="text-[11px] sm:text-xs font-medium">Chemical Cost</span>
-                      <TrendingDown className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600" />
-                    </div>
-                    <div className="text-base sm:text-xl font-bold text-foreground font-mono">
-                      -18% to -35%
-                    </div>
-                    <p className="text-[10px] sm:text-[11px] text-muted-foreground">
-                      Dosage & recipe tuning
-                    </p>
-                  </div>
-
-                  <div className="p-2.5 sm:p-3.5 rounded-xl border border-border/70 bg-muted/40 space-y-0.5 sm:space-y-1">
-                    <div className="flex items-center justify-between text-muted-foreground">
-                      <span className="text-[11px] sm:text-xs font-medium">BOD / COD</span>
-                      <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600" />
-                    </div>
-                    <div className="text-base sm:text-xl font-bold text-foreground font-mono">
-                      99%+ In-Spec
-                    </div>
-                    <p className="text-[10px] sm:text-[11px] text-muted-foreground">
-                      Pollution board norms
-                    </p>
-                  </div>
-
-                  <div className="p-2.5 sm:p-3.5 rounded-xl border border-border/70 bg-muted/40 space-y-0.5 sm:space-y-1">
-                    <div className="flex items-center justify-between text-muted-foreground">
-                      <span className="text-[11px] sm:text-xs font-medium">Aeration Power</span>
-                      <Zap className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600" />
-                    </div>
-                    <div className="text-base sm:text-xl font-bold text-foreground font-mono">
-                      -12% to -22%
-                    </div>
-                    <p className="text-[10px] sm:text-[11px] text-muted-foreground">
-                      DO & blower tuning
-                    </p>
-                  </div>
-
-                  <div className="p-2.5 sm:p-3.5 rounded-xl border border-border/70 bg-muted/40 space-y-0.5 sm:space-y-1">
-                    <div className="flex items-center justify-between text-muted-foreground">
-                      <span className="text-[11px] sm:text-xs font-medium">Water Reuse</span>
-                      <Droplet className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-emerald-600" />
-                    </div>
-                    <div className="text-base sm:text-xl font-bold text-foreground font-mono">
-                      Maximized
-                    </div>
-                    <p className="text-[10px] sm:text-[11px] text-muted-foreground">
-                      Cooling & flushing
-                    </p>
-                  </div>
-                </div>
-
-              {/* Scope Footer note */}
-              <div className="pt-2 text-xs text-muted-foreground border-t border-border/50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                <span>Applicable to ETP, STP & ZLD</span>
-                <span className="text-primary font-medium">Direct Engineering Advisory</span>
-              </div>
-            </div>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>

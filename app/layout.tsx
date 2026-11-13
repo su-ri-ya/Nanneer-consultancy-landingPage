@@ -15,21 +15,22 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: "Nanneer Consultancy | ETP & STP Performance Experts",
+  title: "Nanneer Global | STP Operations & Maintenance",
   description:
-    "Practical, on-ground troubleshooting for industrial ETP and commercial STP systems across India. Resolve discharge limits, reduce OPEX, and stabilize performance.",
+    "Every Drop Treated. Every Drop Accounted For. 24×7 STP operations, measurable water recovery, and complete operational accountability through trained manpower and NeerOS monitoring.",
   keywords: [
-    "ETP troubleshooting",
-    "STP performance",
-    "water treatment consultancy India",
-    "effluent treatment plant optimization",
-    "sewage treatment plant consulting",
-    "BOD COD reduction",
-    "industrial wastewater engineering",
+    "STP Operations and Maintenance",
+    "Sewage Treatment Plant O&M",
+    "Water Recovery India",
+    "Commercial STP Management",
+    "24x7 STP Operators",
+    "Treated Water Reuse",
+    "Cooling Tower Makeup",
+    "NeerOS STP Monitoring"
   ],
-  authors: [{ name: "Nanneer Consultancy" }],
-  creator: "Nanneer Consultancy",
-  metadataBase: new URL("https://consultancy.nanneer.com"),
+  authors: [{ name: "Nanneer Global" }],
+  creator: "Nanneer Global",
+  metadataBase: new URL("https://nanneer.com"),
   icons: {
     icon: [
       { url: "/logo.png" },
@@ -46,17 +47,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://consultancy.nanneer.com",
-    siteName: "Nanneer Consultancy",
-    title: "Nanneer Consultancy | ETP & STP Performance Experts",
+    url: "https://nanneer.com",
+    siteName: "Nanneer Global",
+    title: "Nanneer Global | STP Operations & Maintenance",
     description:
-      "Practical on-ground ETP & STP troubleshooting. Bringing industrial and commercial water treatment plants to their intended design performance.",
+      "Every Drop Treated. Every Drop Accounted For. 24×7 STP Operations. Measurable Water Recovery. Complete Accountability.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nanneer Consultancy | ETP & STP Performance Experts",
+    title: "Nanneer Global | STP Operations & Maintenance",
     description:
-      "Practical on-ground ETP & STP troubleshooting. Bringing water treatment systems to intended design performance.",
+      "Every Drop Treated. Every Drop Accounted For. 24×7 STP Operations. Measurable Water Recovery. Complete Accountability.",
   },
   robots: {
     index: true,
@@ -111,7 +112,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
       </head>
-      <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans min-h-screen flex flex-col bg-white text-foreground overflow-x-hidden`}>
+      <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans min-h-screen flex flex-col bg-white text-foreground overflow-x-clip`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -120,7 +121,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <main className="flex-1 overflow-x-hidden">{children}</main>
+          <main className="flex-1 overflow-x-clip">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>
