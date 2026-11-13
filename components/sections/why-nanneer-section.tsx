@@ -255,7 +255,7 @@ export function WhyNanneerSection() {
                   {activeTier.detail}
                 </p>
                 <a
-                  href="/documents/PRESTIGE_POLYGON_STP_240_KLD_SEPTEMBER_2026.pdf"
+                  href="/documents/Plant_Manpower_Operation_Report_Updated_SEP.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="shrink-0 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-sky-600 hover:bg-sky-700 text-white text-[11px] font-semibold shadow-xs transition-colors self-start sm:self-center w-full sm:w-auto"
